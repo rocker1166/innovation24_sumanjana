@@ -5,7 +5,7 @@ import { Timeline } from "./ui/timeline";
 export function TimelineDemo() {
   const data = [
     {
-      title: "2024",
+      title: "Veg",
       content: (
         <div>
           <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-8">
@@ -13,7 +13,7 @@ export function TimelineDemo() {
           </p>
           <div className="grid grid-cols-2 gap-4">
             <Image
-              src="https://assets.aceternity.com/templates/startup-1.webp"
+              src="https://www.pixelstalk.net/wp-content/uploads/2016/08/HD-Pictures-Food-620x388.jpg"
               alt="startup template"
               width={500}
               height={500}
@@ -45,7 +45,7 @@ export function TimelineDemo() {
       ),
     },
     {
-      title: "Early 2023",
+      title: "NON-Veg",
       content: (
         <div>
           <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-8">
@@ -90,7 +90,7 @@ export function TimelineDemo() {
       ),
     },
     {
-      title: "Changelog",
+      title: "Indian",
       content: (
         <div>
           <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-4">
