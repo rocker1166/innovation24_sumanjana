@@ -46,7 +46,7 @@ const Header: React.FC = () => {
               height={40}
               className="rounded-full"
             />
-            YummyDelivery
+          FoodieExpress
           </Link>
         </div>
 

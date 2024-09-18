@@ -90,7 +90,7 @@ export function TimelineDemo() {
       ),
     },
     {
-      title: "Indian",
+      title: "",
       content: (
         <div>
           <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-4">

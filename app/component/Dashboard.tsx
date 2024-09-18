@@ -337,7 +337,7 @@ export default function DeliveryDashboard() {
       </main>
 
       {/* Footer */}
-      <footer className="backdrop-blur-md text-white  border-x-2 py-12">
+      <footer className="backdrop-blur-md text-white  border-x- py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
