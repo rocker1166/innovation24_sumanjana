@@ -4,21 +4,21 @@ import { useState, useEffect } from 'react'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
-import { Tabs,  TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Badge } from "@/components/ui/badge"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Slider } from "@/components/ui/slider"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Label } from "@/components/ui/label"
-import { ShoppingCart, User, Home, Search, ChevronLeft, ChevronRight, Star, Clock, DollarSign,  Heart, Plus, Minus,  } from 'lucide-react'
+import { ShoppingCart, User, Home, Search, ChevronLeft, ChevronRight, Star, Clock, DollarSign, Heart, Plus, Minus } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
 // Mock data
 const foodItems = [
   { id: 1, name: 'Margherita Pizza', category: 'pizza', cuisine: 'Italian', price: 12.99, rating: 4.5, deliveryTime: 30, image: 'https://www.pixelstalk.net/wp-content/uploads/2016/08/Food-Wallpapers-HD-For-Desktop-620x388.jpg' },
-  { id: 2, name: 'Chicken Biryani', category: 'biryani', cuisine: 'Indian', price: 15.99, rating: 4.7, deliveryTime: 35, image: 'https://www.cubesnjuliennes.com/wp-content/uploads/2020/07/Chicken-Biryani-Recipe.jpg' },
+  { id: 2, name: 'Chicken Biryani', category: 'biryani', cuisine: 'Indian', price: 15.99, rating: 4.7, deliveryTime: 35, image: 'https://www.pixelstalk.net/wp-content/uploads/2016/08/HD-Pictures-Food-620x388.jpg' },
   { id: 3, name: 'Vegetable Curry', category: 'curry', cuisine: 'Indian', price: 10.99, rating: 4.2, deliveryTime: 25, image: 'https://www.pixelstalk.net/wp-content/uploads/2016/08/Italian-food-download-hd-wallpapers-620x349.jpg' },
   { id: 4, name: 'Beef Burger', category: 'burger', cuisine: 'American', price: 13.99, rating: 4.6, deliveryTime: 20, image: 'https://www.pixelstalk.net/wp-content/uploads/2016/08/Perfect-food-backgrounds-for-desktop-620x388.jpg' },
   { id: 5, name: 'Paneer Tikka', category: 'appetizer', cuisine: 'Indian', price: 11.99, rating: 4.4, deliveryTime: 30, image: 'https://www.pixelstalk.net/wp-content/uploads/2016/08/Photos-Food-HD-620x388.jpg' },
@@ -29,30 +29,30 @@ const categories = ['all', 'pizza', 'biryani', 'curry', 'burger', 'appetizer', '
 const cuisines = ['All', 'Italian', 'Indian', 'American', 'British']
 
 const offers = [
-    {
-      id: 1,
-      title: 'Summer Special',
-      description: '20% off on all salads',
-      image: 'https://www.pixelstalk.net/wp-content/uploads/2016/08/Fresh-hot-delicious-food-wallpaper.jpg', // Consider using images you control
-    },
-    {
-      id: 2,
-      title: 'Family Feast',
-      description: 'Buy 2 large pizzas, get 1 free',
-      image: 'https://www.pixelstalk.net/wp-content/uploads/2016/08/Food-Images-For-Desktop.jpg', // Consider using images you control
-    },
-    {
-      id: 3,
-      title: 'Healthy Choice',
-      description: 'Free drink with any vegan meal',
-      image: 'https://www.pixelstalk.net/wp-content/uploads/2016/08/Desktop-Food-Images-Download.jpg', // Consider using images you control
-    },
-  ];
+  {
+    id: 1,
+    title: 'Summer Special',
+    description: '20% off on all salads',
+    image: 'https://www.pixelstalk.net/wp-content/uploads/2016/08/Fresh-hot-delicious-food-wallpaper.jpg',
+  },
+  {
+    id: 2,
+    title: 'Family Feast',
+    description: 'Buy 2 large pizzas, get 1 free',
+    image: 'https://www.pixelstalk.net/wp-content/uploads/2016/08/Food-Images-For-Desktop.jpg',
+  },
+  {
+    id: 3,
+    title: 'Healthy Choice',
+    description: 'Free drink with any vegan meal',
+    image: 'https://www.pixelstalk.net/wp-content/uploads/2016/08/Desktop-Food-Images-Download.jpg',
+  },
+]
 
 export default function DeliveryDashboard() {
   const [activeCategory, setActiveCategory] = useState('all')
   const [currentOfferIndex, setCurrentOfferIndex] = useState(0)
-  const [cart, setCart] = useState([])
+  const [cart, setCart] = useState<Array<{ id: number; quantity: number }>>([])
   const [priceRange, setPriceRange] = useState([0, 20])
   const [selectedCuisines, setSelectedCuisines] = useState(['All'])
   const [sortBy, setSortBy] = useState('featured')
@@ -80,22 +80,22 @@ export default function DeliveryDashboard() {
       }
     })
 
-  const addToCart = (item) => {
+  const addToCart = (item: { id: number }) => {
     const existingItem = cart.find(cartItem => cartItem.id === item.id)
     if (existingItem) {
       setCart(cart.map(cartItem => 
         cartItem.id === item.id ? { ...cartItem, quantity: cartItem.quantity + 1 } : cartItem
       ))
     } else {
-      setCart([...cart, { ...item, quantity: 1 }])
+      setCart([...cart, { id: item.id, quantity: 1 }])
     }
   }
 
-  const removeFromCart = (item) => {
+  const removeFromCart = (item: { id: number }) => {
     const existingItem = cart.find(cartItem => cartItem.id === item.id)
-    if (existingItem.quantity === 1) {
+    if (existingItem && existingItem.quantity === 1) {
       setCart(cart.filter(cartItem => cartItem.id !== item.id))
-    } else {
+    } else if (existingItem) {
       setCart(cart.map(cartItem => 
         cartItem.id === item.id ? { ...cartItem, quantity: cartItem.quantity - 1 } : cartItem
       ))
@@ -111,24 +111,24 @@ export default function DeliveryDashboard() {
   }
 
   useEffect(() => {
-    const timer = setInterval(nextOffer, 5000) // Auto-advance every 5 seconds
+    const timer = setInterval(nextOffer, 5000)
     return () => clearInterval(timer)
   }, [])
 
   return (
-    <div className="min-h-screen  backdrop-blur-lg">
+    <div className="min-h-screen backdrop-blur-lg">
       {/* Navbar */}
-      <nav className=" shadow-md sticky top-0 z-50 backdrop-blur-xl">
+      <nav className="shadow-md sticky top-0 z-50 backdrop-blur-xl">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
             <div className="flex items-center">
-              <span className="flex-shrink-0 text-2xl font-bold text-primary"><Link href='/'> FoodieExpress</Link></span>
+              <span className="flex-shrink-0 text-2xl font-bold text-primary"><Link href='/'>FoodieExpress</Link></span>
               <div className="hidden md:flex md:ml-6 md:space-x-4">
                 <Button variant="ghost"><Home className="mr-2 h-4 w-4" />Home</Button>
                 <Button variant="ghost"><User className="mr-2 h-4 w-4" />Account</Button>
                 <Button variant="ghost">
                   <ShoppingCart className="mr-2 h-4 w-4" />
-                 <Link href='/dashboard/cart'>Cart</Link> 
+                  <Link href='/dashboard/cart'>Cart</Link> 
                   {cart.length > 0 && (
                     <Badge variant="destructive" className="ml-2">{cart.length}</Badge>
                   )}
@@ -150,48 +150,48 @@ export default function DeliveryDashboard() {
       </nav>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8 ">
+      <main className="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
         {/* Slideshow */}
         <div className="relative mb-8 rounded-lg overflow-hidden shadow-xl">
-      <div className="aspect-w-2 aspect-h-4">
-        <Image
-        width={800}
-        height={100}
-          src={offers[currentOfferIndex].image}
-          alt={offers[currentOfferIndex].title}
-          className="object-cover w-full h-full" // Ensure image fills the container
-        />
-        <div className="absolute inset-0   bg-opacity-50 flex items-center justify-center">
-          <div className="text-center text-white">
-            <h2 className="text-4xl font-bold mb-2">{offers[currentOfferIndex].title}</h2>
-            <p className="text-xl">{offers[currentOfferIndex].description}</p>
+          <div className="aspect-w-2 aspect-h-4">
+            <Image
+              width={800}
+              height={400}
+              src={offers[currentOfferIndex].image}
+              alt={offers[currentOfferIndex].title}
+              className="object-cover w-full h-full"
+            />
+            <div className="absolute inset-0 bg-opacity-50 flex items-center justify-center">
+              <div className="text-center text-white">
+                <h2 className="text-4xl font-bold mb-2">{offers[currentOfferIndex].title}</h2>
+                <p className="text-xl">{offers[currentOfferIndex].description}</p>
+              </div>
+            </div>
           </div>
+          <Button
+            variant="outline"
+            size="icon"
+            className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-opacity-50 hover:bg-opacity-75"
+            onClick={prevOffer}
+          >
+            <ChevronLeft className="h-6 w-6" />
+            <span className="sr-only">Previous offer</span>
+          </Button>
+          <Button
+            variant="outline"
+            size="icon"
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-opacity-50 hover:bg-opacity-75"
+            onClick={nextOffer}
+          >
+            <ChevronRight className="h-6 w-6" />
+            <span className="sr-only">Next offer</span>
+          </Button>
         </div>
-      </div>
-      <Button
-        variant="outline"
-        size="icon"
-        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-opacity-50 hover:bg-opacity-75"
-        onClick={prevOffer}
-      >
-        <ChevronLeft className="h-6 w-6" />
-        <span className="sr-only">Previous offer</span>
-      </Button>
-      <Button
-        variant="outline"
-        size="icon"
-        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-opacity-50 hover:bg-opacity-75"
-        onClick={nextOffer}
-      >
-        <ChevronRight className="h-6 w-6" />
-        <span className="sr-only">Next offer</span>
-      </Button>
-    </div>
 
         {/* Filters and Sorting */}
         <div className="mb-8 p-4 rounded-lg shadow">
           <div className="flex flex-wrap items-center justify-between gap-4">
-          <div className="flex-1 min-w-[200px]">
+            <div className="flex-1 min-w-[200px]">
               <h3 className="text-lg font-semibold mb-2">Price Range</h3>
               <Slider
                 min={0}
@@ -337,7 +337,7 @@ export default function DeliveryDashboard() {
       </main>
 
       {/* Footer */}
-      <footer className=" backdrop-blur-md text-white py-12">
+      <footer className="backdrop-blur-md text-white  border-x-2 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
