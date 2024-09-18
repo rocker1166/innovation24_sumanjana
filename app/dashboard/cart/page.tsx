@@ -51,11 +51,11 @@ export default function CartPage() {
   }, [cartItems])
 
   return (
-    <div className="min-h-screen bg-gray-100 py-8">
+    <div className="min-h-screen  py-8">
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between mb-8">
           <h1 className="text-3xl font-bold text-gray-900">Your Cart</h1>
-          <Link href="/" passHref>
+          <Link href="/dashboard" passHref>
             <Button variant="outline">
               <ArrowLeft className="mr-2 h-4 w-4" />
               Continue Shopping
@@ -78,11 +78,11 @@ export default function CartPage() {
             <Card className="mb-8">
               <CardContent className="divide-y divide-gray-200">
                 {cartItems.map((item) => (
-                  <div key={item.id} className="py-6 flex items-center">
+                  <div key={item.id} className="py-6  text-white flex items-center">
                     <img src={item.image} alt={item.name} className="h-16 w-16 rounded-md object-cover mr-4" />
                     <div className="flex-1">
-                      <h3 className="text-lg font-medium text-gray-900">{item.name}</h3>
-                      <p className="mt-1 text-sm text-gray-500">${item.price.toFixed(2)}</p>
+                      <h3 className="text-lg font-medium ">{item.name}</h3>
+                      <p className="mt-1 text-sm text-white">${item.price.toFixed(2)}</p>
                     </div>
                     <div className="flex items-center">
                       <Button

@@ -12,6 +12,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Checkbox } from "@/components/ui/checkbox"
 import { Label } from "@/components/ui/label"
 import { ShoppingCart, User, Home, Search, ChevronLeft, ChevronRight, Star, Clock, DollarSign,  Heart, Plus, Minus,  } from 'lucide-react'
+import Image from 'next/image'
+import Link from 'next/link'
 
 // Mock data
 const foodItems = [
@@ -27,10 +29,25 @@ const categories = ['all', 'pizza', 'biryani', 'curry', 'burger', 'appetizer', '
 const cuisines = ['All', 'Italian', 'Indian', 'American', 'British']
 
 const offers = [
-  { id: 1, title: 'Summer Special', description: '20% off on all salads', image: '/placeholder.svg?height=400&width=800' },
-  { id: 2, title: 'Family Feast', description: 'Buy 2 large pizzas, get 1 free', image: '/placeholder.svg?height=400&width=800' },
-  { id: 3, title: 'Healthy Choice', description: 'Free drink with any vegan meal', image: '/placeholder.svg?height=400&width=800' },
-]
+    {
+      id: 1,
+      title: 'Summer Special',
+      description: '20% off on all salads',
+      image: 'https://www.pixelstalk.net/wp-content/uploads/2016/08/Fresh-hot-delicious-food-wallpaper.jpg', // Consider using images you control
+    },
+    {
+      id: 2,
+      title: 'Family Feast',
+      description: 'Buy 2 large pizzas, get 1 free',
+      image: 'https://www.pixelstalk.net/wp-content/uploads/2016/08/Food-Images-For-Desktop.jpg', // Consider using images you control
+    },
+    {
+      id: 3,
+      title: 'Healthy Choice',
+      description: 'Free drink with any vegan meal',
+      image: 'https://www.pixelstalk.net/wp-content/uploads/2016/08/Desktop-Food-Images-Download.jpg', // Consider using images you control
+    },
+  ];
 
 export default function DeliveryDashboard() {
   const [activeCategory, setActiveCategory] = useState('all')
@@ -105,13 +122,13 @@ export default function DeliveryDashboard() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
             <div className="flex items-center">
-              <span className="flex-shrink-0 text-2xl font-bold text-primary">FoodieExpress</span>
+              <span className="flex-shrink-0 text-2xl font-bold text-primary"><Link href='/'> FoodieExpress</Link></span>
               <div className="hidden md:flex md:ml-6 md:space-x-4">
                 <Button variant="ghost"><Home className="mr-2 h-4 w-4" />Home</Button>
                 <Button variant="ghost"><User className="mr-2 h-4 w-4" />Account</Button>
                 <Button variant="ghost">
                   <ShoppingCart className="mr-2 h-4 w-4" />
-                  Cart
+                 <Link href='/dashboard/cart'>Cart</Link> 
                   {cart.length > 0 && (
                     <Badge variant="destructive" className="ml-2">{cart.length}</Badge>
                   )}
@@ -136,43 +153,45 @@ export default function DeliveryDashboard() {
       <main className="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8 ">
         {/* Slideshow */}
         <div className="relative mb-8 rounded-lg overflow-hidden shadow-xl">
-          <div className="aspect-w-16 aspect-h-9">
-            <img
-              src={offers[currentOfferIndex].image}
-              alt={offers[currentOfferIndex].title}
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-              <div className="text-center text-white">
-                <h2 className="text-4xl font-bold mb-2">{offers[currentOfferIndex].title}</h2>
-                <p className="text-xl">{offers[currentOfferIndex].description}</p>
-              </div>
-            </div>
+      <div className="aspect-w-2 aspect-h-4">
+        <Image
+        width={800}
+        height={100}
+          src={offers[currentOfferIndex].image}
+          alt={offers[currentOfferIndex].title}
+          className="object-cover w-full h-full" // Ensure image fills the container
+        />
+        <div className="absolute inset-0   bg-opacity-50 flex items-center justify-center">
+          <div className="text-center text-white">
+            <h2 className="text-4xl font-bold mb-2">{offers[currentOfferIndex].title}</h2>
+            <p className="text-xl">{offers[currentOfferIndex].description}</p>
           </div>
-          <Button
-            variant="outline"
-            size="icon"
-            className="absolute left-4 top-1/2 transform -translate-y-1/2  bg-opacity-50 hover:bg-opacity-75"
-            onClick={prevOffer}
-          >
-            <ChevronLeft className="h-6 w-6" />
-            <span className="sr-only">Previous offer</span>
-          </Button>
-          <Button
-            variant="outline"
-            size="icon"
-            className="absolute right-4 top-1/2 transform -translate-y-1/2  bg-opacity-50 hover:bg-opacity-75"
-            onClick={nextOffer}
-          >
-            <ChevronRight className="h-6 w-6" />
-            <span className="sr-only">Next offer</span>
-          </Button>
         </div>
+      </div>
+      <Button
+        variant="outline"
+        size="icon"
+        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-opacity-50 hover:bg-opacity-75"
+        onClick={prevOffer}
+      >
+        <ChevronLeft className="h-6 w-6" />
+        <span className="sr-only">Previous offer</span>
+      </Button>
+      <Button
+        variant="outline"
+        size="icon"
+        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-opacity-50 hover:bg-opacity-75"
+        onClick={nextOffer}
+      >
+        <ChevronRight className="h-6 w-6" />
+        <span className="sr-only">Next offer</span>
+      </Button>
+    </div>
 
         {/* Filters and Sorting */}
         <div className="mb-8 p-4 rounded-lg shadow">
           <div className="flex flex-wrap items-center justify-between gap-4">
-            <div className="flex-1 min-w-[200px]">
+          <div className="flex-1 min-w-[200px]">
               <h3 className="text-lg font-semibold mb-2">Price Range</h3>
               <Slider
                 min={0}
@@ -318,7 +337,7 @@ export default function DeliveryDashboard() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-gray-800 text-white py-12">
+      <footer className=" backdrop-blur-md text-white py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
