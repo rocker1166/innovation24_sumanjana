@@ -17,9 +17,7 @@ export function TypewriterEffectSmoothDemo() {
     {
       text: "Life.",
     },
-    {
-      text: "Order",
-    },
+    
   
     {
       text: "Order Now !",

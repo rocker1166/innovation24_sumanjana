@@ -35,7 +35,7 @@ const Header: React.FC = () => {
   };
 
   return (
-    <header className="sticky top-0 left-0 z-50 flex w-full h-20 items-center  backdrop-blur-lg bg-opacity-90 dark:bg-opacity-90  border-b-1 border-black">
+    <header className="sticky top-0 left-0 z-50 flex w-full h-20 items-center  backdrop-blur-lg bg-opacity-90 dark:bg-opacity-90   border-blue-200 ">
       <div className="px-4 w-full relative flex items-center justify-between">
         <div className="w-fit">
           <Link href="/" className="header-logo w-full py-2 font-bold text-sm sm:text-lg text-black dark:text-white flex justify-center items-center flex-row gap-2">
