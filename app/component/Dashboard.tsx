@@ -17,8 +17,8 @@ import Link from 'next/link'
 
 // Mock data
 const foodItems = [
-  { id: 1, name: 'Margherita Pizza', category: 'pizza', cuisine: 'Italian', price: 12.99, rating: 4.5, deliveryTime: 30, image: 'https://www.pixelstalk.net/wp-content/uploads/2016/08/HD-Pictures-Food-620x388.jpg' },
-  { id: 2, name: 'Chicken Biryani', category: 'biryani', cuisine: 'Indian', price: 15.99, rating: 4.7, deliveryTime: 35, image: 'https://www.pixelstalk.net/wp-content/uploads/2016/08/HD-Pictures-Food-620x388.jpg' },
+  { id: 1, name: 'Margherita Pizza', category: 'pizza', cuisine: 'Italian', price: 12.99, rating: 4.5, deliveryTime: 30, image: 'https://www.pixelstalk.net/wp-content/uploads/2016/08/Food-Wallpapers-HD-For-Desktop-620x388.jpg' },
+  { id: 2, name: 'Chicken Biryani', category: 'biryani', cuisine: 'Indian', price: 15.99, rating: 4.7, deliveryTime: 35, image: 'https://www.cubesnjuliennes.com/wp-content/uploads/2020/07/Chicken-Biryani-Recipe.jpg' },
   { id: 3, name: 'Vegetable Curry', category: 'curry', cuisine: 'Indian', price: 10.99, rating: 4.2, deliveryTime: 25, image: 'https://www.pixelstalk.net/wp-content/uploads/2016/08/Italian-food-download-hd-wallpapers-620x349.jpg' },
   { id: 4, name: 'Beef Burger', category: 'burger', cuisine: 'American', price: 13.99, rating: 4.6, deliveryTime: 20, image: 'https://www.pixelstalk.net/wp-content/uploads/2016/08/Perfect-food-backgrounds-for-desktop-620x388.jpg' },
   { id: 5, name: 'Paneer Tikka', category: 'appetizer', cuisine: 'Indian', price: 11.99, rating: 4.4, deliveryTime: 30, image: 'https://www.pixelstalk.net/wp-content/uploads/2016/08/Photos-Food-HD-620x388.jpg' },
