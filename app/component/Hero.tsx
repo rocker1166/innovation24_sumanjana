@@ -14,7 +14,7 @@ export const products = [
   },
   {
     title: "Cursor",
-    link: "https://cursor.so",
+    link: "/dashboard",
     thumbnail:
       "https://aceternity.com/images/products/thumbnails/new/cursor.png",
   },
@@ -39,7 +39,7 @@ export const products = [
   },
   {
     title: "Pixel Perfect",
-    link: "https://app.pixelperfect.quest",
+    link: "/dashboard",
     thumbnail:
       "https://aceternity.com/images/products/thumbnails/new/pixelperfect.png",
   },
